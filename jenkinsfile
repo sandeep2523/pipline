@@ -8,16 +8,20 @@
             }
         }
         stage('DEPLOY') {
+        parallel {
+         stage('DEPLOY1') {
            agent { label 'slave1' }
             steps {
                 sh 'echo "this is deploy stage"'
             }
-        }
+         }
         stage('TESTING') {
           agent { label 'slave2' }
             steps {
                 sh 'echo "this is testing stage"'
-            }
+          }
+          }
+    }
     }
   }
 }
