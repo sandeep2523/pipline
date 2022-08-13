@@ -6,7 +6,7 @@
         stage('BUILD') {
        agent { label 'master' }
             steps {
-                sh 'echo "this is build stage"'
+                git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
             }
         }
          stage('DEPLOY1') {
