@@ -1,5 +1,5 @@
  pipeline {
-    agnet none
+    agent none
     stages{
         stage('own') {
             parallel {
