@@ -6,7 +6,7 @@ pipeline {
                 sh 'echo "this is build stage"'  
             }
         }
-        stage('DEPLOY')C{
+        stage('DEPLOY') {
             steps {
                 sh 'echo "this is deploy stage"'
             }
