@@ -5,11 +5,15 @@
         parallel {
            stage('OWN-BUILD') {
             agent { label 'slave1' }
+            steps {
             git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
+          }
           }
           stage('OWN-DEPLOY') {
             agent { label 'master' }
-            echo "hello"
+           steps {
+           echo "hello"
+          }
           }
         }
         }
