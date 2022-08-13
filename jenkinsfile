@@ -12,7 +12,7 @@
                 stage('DEPLOY') {
                     agent { label 'master' }
                     steps{
-                        echo "hiiii"
+                        echo "hiiiiiiii"
                     }
                 }
             }
