@@ -1,27 +1,35 @@
  pipeline {
     agent none
     stages {
-    stage('all') {
-    parallel {
         stage('BUILD') {
-       agent { label 'master' }
+            agent { label 'slave1' }
             steps {
-                git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
+            sh'''
+            sleep5
+            echo "hi"
+            echo "hello"
+            '''        
             }
         }
-         stage('DEPLOY1') {
-           agent { label 'slave1' }
+        stage('DEPLOY') {
+            agent { label 'slave2' }
             steps {
-                sh 'echo "this is deploy stage"'
+                sh'''
+                sleep10
+                echo "new"
+                echo "new1"
+                '''
             }
-         }
-        stage('TESTING') {
-          agent { label 'slave2' }
+        }
+        stage('TEST') {
+            agent { label 'slave2' }
             steps {
-                sh 'echo "this is testing stage"'
-          }
-          }
-  }
-  }
-  }
+                sh'''
+                echo "helloo"
+                echo "hiiiii"
+                echo "heyyy"
+                '''
+            }
+        }
+    }
 }
