@@ -5,7 +5,7 @@
             agent { label 'slave1' }
             steps {
             sh'''
-            sleep5
+            sleep 5
             echo "hi"
             echo "hello"
             '''        
@@ -15,7 +15,7 @@
             agent { label 'slave2' }
             steps {
                 sh'''
-                sleep10
+                sleep 10
                 echo "new"
                 echo "new1"
                 '''
