@@ -1,34 +1,22 @@
  pipeline {
     agent none
     stages {
-        stage('BUILD') {
+        stage('OWN-BUILD') {
+            agent { label 'master' } 
+            steps {
+                git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
+            }
+        }
+        stage('OWN-DEPLOY') {
             agent { label 'slave1' }
             steps {
-            sh'''
-            sleep 5
-            echo "hi"
-            echo "hello"
-            '''        
+                echo "new test"
             }
         }
-        stage('DEPLOY') {
+        stage('OWN-TEST') {
             agent { label 'slave2' }
             steps {
-                sh'''
-                sleep 10
-                echo "new"
-                echo "new1"
-                '''
-            }
-        }
-        stage('TEST') {
-            agent { label 'slave2' }
-            steps {
-                sh'''
-                echo "helloo"
-                echo "hiiiii"
-                echo "heyyy"
-                '''
+                echo "this is testing satge"
             }
         }
     }
