@@ -9,6 +9,8 @@
             parallel {
             stage('BUILD') {
             agent { label 'slave1' }
+            environment {
+            NEW_ONE = "this script is declarative"
             steps {
              echo "$BRANCH"
             echo "$GITREPO"
@@ -17,7 +19,9 @@
              pwd
              ls
              echo "this id building of new pipeline script"
+             echo "$NEW_ONE" 
              '''
+             }
              }
             }
             stage('NEW-DEPLOY') {
