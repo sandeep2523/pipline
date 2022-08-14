@@ -15,7 +15,7 @@
             steps {
              echo "$BRANCH"
             echo "$GITREPO"
-             echo "${params.BATCH NAME}"
+             git branch june2022 : ${params.defaultvalue}
              sh '''
              #!/bin/bash
              pwd
