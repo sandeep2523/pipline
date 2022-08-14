@@ -14,12 +14,12 @@
             steps {
              echo "$BRANCH"
             echo "$GITREPO"
+            echo "$NEW_ONE"
              sh '''
              #!/bin/bash
              pwd
              ls
              echo "this id building of new pipeline script"
-             echo "$NEW_ONE" 
              '''
              }
              }
