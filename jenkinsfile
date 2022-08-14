@@ -3,6 +3,8 @@
     environment {
         BRANCH = "main"
            GITREPO = "https://github.com/sandeep2523/c-project-demo"
+           parameters {
+           string(defaultValue: 'batch june2022', description: 'please selct the batch you required', name: 'BATCH NAME', trim: true)
     }
         stages {
             stage('BOSS') {
@@ -17,6 +19,7 @@
              pwd
              ls
              echo "this id building of new pipeline script"
+             echo "${params.batch june2022}"
              '''
              }
             }
@@ -34,5 +37,6 @@
             }
                 }
             }
+        }
         }
 }
