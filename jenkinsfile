@@ -10,8 +10,10 @@
             stage('BUILD') {
             agent { label 'slave1' }
             steps {
+             step {
              branch: BRANCH
              url: GITREPO
+             }
              sh '''
              #!/bin/bash
              pwd
@@ -23,8 +25,10 @@
             stage('NEW-DEPLOY') {
                 agent { label 'slave2' }
                 steps {
+                step {
                 branch: BRANCH
                 url: GITREPO
+                }
                 sh '''
                 #!/bin/bash
                 ls
