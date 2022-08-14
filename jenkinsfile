@@ -1,21 +1,36 @@
  pipeline {
     agent none
-    stages{
-        stage('own') {
+    environment {
+        BRANCH = "main"
+           GIT-REPO = "https://github.com/sandeep2523/c-project-demo"
+    }
+        stages {
+            stage('BOSS') {
             parallel {
-                stage('BUILD') {
-                    agent { label 'slave1' }
-                    steps {
-                        git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
-                    }
+            stage('BUILD') {
+            agent { label 'slave1'}
+            steps {
+             branch: env.BRANCH , url: env.GIT-REPO
+             sh '''
+             #!/bin/bash
+             pwd
+             ls
+             echo "this id building of new pipeline script"
+             '''
+             }
+            }
+            stage('NEW-DEPLOY') {
+                agent { label 'slave2' }
+                steps {
+                branch: env.BRANCH , url: env.GIT-REPO
+                sh '''
+                #!/bin/bash
+                ls
+                echo "this is script"
+                '''
                 }
-                stage('DEPLOY') {
-                    agent { label 'master' }
-                    steps{
-                        echo "hiiiiiiii"
-                    }
+            }
                 }
             }
         }
-    }
 }
