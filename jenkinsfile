@@ -12,7 +12,6 @@
             steps {
              echo "$BRANCH"
             echo "$GITREPO"
-            echo "$NEW_ONE"
              sh '''
              #!/bin/bash
              pwd
