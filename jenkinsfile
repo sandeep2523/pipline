@@ -11,7 +11,7 @@
             agent { label 'slave1' }
             steps {
              git branch: BRANCH
-             git url: GITREPO
+             url: GITREPO
              sh '''
              #!/bin/bash
              pwd
@@ -24,7 +24,7 @@
                 agent { label 'slave2' }
                 steps {
                 git branch: BRANCH
-                git url: GITREPO
+                url: GITREPO
                 sh '''
                 #!/bin/bash
                 ls
