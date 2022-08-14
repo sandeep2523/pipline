@@ -10,7 +10,8 @@
             stage('BUILD') {
             agent { label 'slave1' }
             steps {
-             branch: env.BRANCH, url: env.GIT-REPO
+             branch: env.BRANCH
+             url: env.GIT-REPO
              sh '''
              #!/bin/bash
              pwd
@@ -22,7 +23,8 @@
             stage('NEW-DEPLOY') {
                 agent { label 'slave2' }
                 steps {
-                branch: env.BRANCH, url: env.GIT-REPO
+                branch: env.BRANCH
+                url: env.GIT-REPO
                 sh '''
                 #!/bin/bash
                 ls
