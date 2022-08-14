@@ -20,7 +20,7 @@
              pwd
              ls
              echo "this id building of new pipeline script"
-             echo "${params.BATCH NAME}"
+             echo "${ params.BATCH NAME }"
              '''
              }
             }
