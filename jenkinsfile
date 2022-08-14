@@ -15,7 +15,7 @@
             steps {
              echo "$BRANCH"
             echo "$GITREPO"
-             echo "${ params.BATCH NAME }"
+             echo "${params.BATCH NAME}"
              sh '''
              #!/bin/bash
              pwd
