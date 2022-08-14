@@ -2,7 +2,7 @@
     agent none
     environment {
         BRANCH = "main"
-           GIT-REPO = "https://github.com/sandeep2523/c-project-demo"
+           GITREPO = "https://github.com/sandeep2523/c-project-demo"
     }
         stages {
             stage('BOSS') {
@@ -11,7 +11,7 @@
             agent { label 'slave1' }
             steps {
              branch: env.BRANCH
-             url: env.GIT-REPO
+             url: env.GITREPO
              sh '''
              #!/bin/bash
              pwd
@@ -24,7 +24,7 @@
                 agent { label 'slave2' }
                 steps {
                 branch: env.BRANCH
-                url: env.GIT-REPO
+                url: env.GITREPO
                 sh '''
                 #!/bin/bash
                 ls
