@@ -9,7 +9,6 @@
                     #!/bin/bash
                     pwd
                     ls
-                   mvn clean install
                    '''
             }
         }
