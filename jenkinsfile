@@ -2,7 +2,7 @@
     agent any
     stages {
         stage('BUILD') {
-            agent { label 'slave1' }
+            agent { label 'master' }
             steps {
                 git 'https://github.com/sandeep2523/helloworld-java.git'
                     sh'''
