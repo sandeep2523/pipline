@@ -4,24 +4,14 @@
         stage('BUILD') {
             agent { label 'slave1' }
             steps {
-                catchError(buildResult: 'SUCCESS' , stageResult: 'FAILURE' ) {
+                git 'https://github.com/sandeep2523/helloworld-java.git'
                     sh'''
                     #!/bin/bash
                     pwd
                     ls
-                    echo "this is for catcherror"
-                    exit 1
-                    '''
-                }
+                   mvn clean package
             }
         }
-        stage('DEPLOY') {
-            agent { label 'slave2' }
-            steps {
-                echo "hello"
-            }
-        }
-
         
     }
 }
