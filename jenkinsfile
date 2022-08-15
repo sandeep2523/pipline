@@ -16,7 +16,7 @@
             }
         }
         stage('DEPLOY') {
-            agent { label 'slav2' }
+            agent { label 'slave2' }
             steps {
                 echo "hello"
             }
