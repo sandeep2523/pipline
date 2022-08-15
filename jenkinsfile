@@ -1,41 +1,26 @@
  pipeline {
-    agent none
-    environment {
-        BRANCH = "main"
-           GITREPO = "https://github.com/sandeep2523/c-project-demo"
-           }
-           parameters {
-           string(defaultValue: 'batch june2022', description: 'please selct the batch you required', name: 'BATCH NAME', trim: true)
-            }
-        stages {
-            stage('BOSS') {
-            parallel {
-            stage('BUILD') {
+    agent any
+    stages {
+        stage('BUILD') {
             agent { label 'slave1' }
             steps {
-             echo "$BRANCH"
-            echo "$GITREPO"
-             sh '''
-             #!/bin/bash
-             pwd
-             ls
-             echo "this id building of new pipeline script"
-             '''
-             }
-            }
-            stage('NEW-DEPLOY') {
-                agent { label 'slave2' }
-                steps {
-                 echo "$BRANCH"
-                 echo "$GITREPO"
-                sh '''
-                #!/bin/bash
-                ls
-                echo "this is script"
-                '''
-                }
-            }
+                catchError(buildResult: 'SUCCESS' , stageResult: 'FAILURE' ) {
+                    sh'''
+                    #!/bin/bash
+                    pwd
+                    ls
+                    echo "this is for catcherror"
+                    exit 1
                 }
             }
         }
+        stage('DEPLOY') {
+            agent { label 'slav2' }
+            steps {
+                echo "hello"
+            }
+        }
+
+        
+    }
 }
