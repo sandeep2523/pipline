@@ -1,33 +1,33 @@
-pipeline{
-	agent any
-	stages {
-		stage('stageA') {
-		 when {
-					expression { stage == 'A' }
-				}
-			   steps {
-						echo "stage, stageA!"
-					}
-				}
-				
-				stage('stageB') {
-		 when {
-					expression { stage == 'B' }
-				}
-			   steps {
-						echo "stage, stageB!"
-					}
-				}
-				stage('stageC') {
-		 when {
-					expression { stage == 'C' }
-				}
-			   steps {
-						echo "stage, stageC!"
-					}
-				}
-				
-				
-		
-		}
-	}
+boolean RESULT = true
+pipeline {
+  agent any
+   stages {
+    stage ('BUILD') {
+      steps {
+        script{
+          try{
+            echo " this is build stage" 
+            sh 'exit 0'  
+          }
+          catch(Exception e){RESULT=false}
+       }
+      }
+    }  
+    stage ('DEPLOY') {
+        when {
+         expression {RESULT == true }
+        }
+            steps {
+                  echo 'this is deploy'
+                }
+              }
+       stage ('TEST') {
+        when {
+         expression {RESULT == false }
+        }
+            steps {
+                  echo 'this is test'
+                }
+              }
+      } 
+    }
