@@ -5,10 +5,8 @@ pipeline {
             when {
                 branch 'master'
             }
-            steps{
-                sh ''
-                echo "this is build stage"
-                ''     
+            steps {
+                echo "this is build stage"   
             }
         }
         stage ('DEPLOY') {
@@ -16,9 +14,9 @@ pipeline {
                 branch 'master'
             }
             steps {
-                sh''
+                sh'''
                 echo "this is deploy stage"
-                ''
+                '''
             }
         }
        
