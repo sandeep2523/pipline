@@ -9,7 +9,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo "this is build stage"   
+                echo "this is build stage" 
+                sh'''
+                git 'https://github.com/sandeep2523/helloworld-java.git'
+                '''
             }
         }
         stage ('DEPLOY') {
