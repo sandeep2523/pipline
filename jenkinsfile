@@ -5,10 +5,10 @@
     }
       stages {
         stage('BUILD') {
+        when {
+        expression {params.STAGE == 'BUILD'}
+        }
             steps {
-             script {
-                if(params.STAGE == 'BUILD')
-                {
                  sh'''
                  #!/bin/bash
                  pwd
@@ -17,52 +17,33 @@
                  git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
                  '''
                 }
-                else
-                {
-                    echo "skipping this stage"
-                }
              }
-            }
-        }
          stage('DEPLOY') {
-            steps{
-                script{
-                        if(params.STAGE == 'DEPLOY')
-                       {
+                when {
+                     expression {params.STAGE == 'DEPLOY'}
+                    }
+                    steps {
                         sh'''
                         #!/bin/bash
                         pwd
                           ls
                         echo "this is deploy stage"
-                        '''
-                        }
-                        else
-                        {
-                            echo "skipping this stage"
-                        }
-
+                        '''      
                     }
                 }
-            }
         stage('TEST') {
+               when {
+                     expression {params.STAGE == 'DEPLOY'}
+                    }
             steps {
-                script {
-                    if(params.STAGE == 'TEST')
-                    {
                         sh'''
                         #!/bin/bash
                         pwd
                         ls
                         echo "this is test stage"
                         '''
-                    }
-                    else
-                    {
-                        echo "skipping this stage"
-                    }
-                }
-            }
-        }  
+                   }
+             }  
 
       }
 }    
