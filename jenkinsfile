@@ -1,7 +1,7 @@
  pipeline {
     agent any
     parameters {
-        choice(choices: ('BUILD', 'DEPLOY', 'TEST'), description: 'Please click on particular stage to run', name: 'SELECT THE STAGE')
+        choice(choices: ['BUILD ', 'DEPLOY', 'TEST'], description: 'Please click on particular stage to run', name: 'SELECT THE STAGE')
     }
     stages {
         stage('BUILD') {
