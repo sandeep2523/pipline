@@ -1,7 +1,7 @@
  pipeline {
     agent any
     parameters {
-        string(defaultValue: 'BUILD', description: 'Click on this to run this stage', name: 'Stage Name')
+        choice(choices: 'BUILD', 'DEPLOY', 'TEST', description: 'Please click on particular stage to run', name: 'SELECT THE STAGE')
     }
     stages {
         stage('BUILD') {
