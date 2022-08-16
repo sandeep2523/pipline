@@ -3,22 +3,27 @@ pipeline {
     stages {
             stage('ALL') {
                 parallel {
-                    when {
-                         branch 'master'
+                    
                     stage('BUILD') {
+                        when {
+                         branch 'master'
+                        }
                         steps {
                            echo "this is build stage"
-                        }
-                       
+                         }
+                     
                     }
                     stage('DEPLOY') {
+                        when {
+                         branch 'master'
+                        }
                         steps { 
                           echo "this is deploy stage"
-                        }
+                      }
                     }
                 }
                 
             }
-        }
     }
-}
+        
+ }
