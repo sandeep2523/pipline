@@ -19,7 +19,7 @@
                 }
                 else
                 {
-                    exit 1
+                    echo "skipping this stage"
                 }
              }
             }
@@ -58,7 +58,7 @@
                     }
                     else
                     {
-                        exit 1
+                        echo "skipping this stage"
                     }
                 }
             }
