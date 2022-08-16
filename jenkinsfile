@@ -1,18 +1,13 @@
  pipeline {
     agent any
+    parameters {
+        string(defaultValue: 'BUILD', description: 'Click on this to run this stage', name: 'Stage Name')
+    }
     stages {
         stage('BUILD') {
-            agent { label 'master' }
             steps {
-                git 'https://github.com/sandeep2523/helloworld-java.git'
-                    sh'''
-                    #!/bin/bash
-                    pwd
-                    ls
-                    mvn clean package
-                   '''
+             echo "this is build stage"
             }
         }
-        
     }
 }
