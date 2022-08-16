@@ -1,32 +1,38 @@
 pipeline {
     agent any
     parameters {
-    choice(choices: ['master', 'main'], description: 'Please select the required branch', name: 'BRANCH')
-    }
-    stages {
-            stage('ALL') {
-                parallel {
-                    
-                    stage('BUILD') {
-                        when {
-                         expression {params.BRANCH == 'master'}
-                        }
-                        steps {
-                           echo "this is build stage"
-                         }
-                     
-                    }
-                    stage('DEPLOY') {
-                        when {
-                         expression {params.BRANCH == 'master'}
-                        }
-                        steps { 
-                          echo "this is deploy stage"
-                      }
-                    }
-                }
-                
+    choice(choices: ['master', 'main'], description: 'Select the branch you want to run', name: 'branch')
+  }
+   stages {
+    stage ('BUILD') {
+      steps {
+         echo 'this is build stage'
             }
-    }
-        
- }
+          }  
+    stage ('DEPLOY') {
+      steps {
+              echo 'this is deploy stage'
+                }
+              } 
+        stage('TEST') {
+        parallel{
+        stage ('Test1') {
+            when { 
+                 expression { params.branch =='master' }
+            }
+            steps {
+                echo "this is test1 stage"   
+            }
+        }
+        stage ('Test2') {
+            when { 
+                 expression { params.branch =='master' }
+            }
+            steps {
+                echo "this is test2 stage"
+            }
+        }
+       }
+}
+}
+      }
