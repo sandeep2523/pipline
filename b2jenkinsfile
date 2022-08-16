@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage {
-        when {
-            branch 'master'
             stage('ALL') {
                 parallel {
+                    when {
+                         branch 'master'
                     stage('BUILD') {
                         steps {
                            echo "this is build stage"
@@ -20,8 +19,6 @@ pipeline {
                 }
                 
             }
-       
-       }
-       }
+        }
     }
 }
