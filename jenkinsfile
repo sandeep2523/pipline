@@ -1,49 +1,32 @@
  pipeline {
-    agent any
-    parameters {
-        choice(choices: ['BUILD ', 'DEPLOY', 'TEST'], description: 'Please click on particular stage to run', name: 'STAGE')
-    }
-      stages {
-        stage('BUILD') {
+  agent any
+  parameters {
+    choice(choices: ['BUILD', 'DEPLOY', 'TEST'], description: 'Select the stage you want to run', name: 'stage')
+  }
+   stages {
+    stage ('BUILD') {
+    when {
+         expression { params.stage == 'BUILD' }
+     }
+      steps {
+         echo 'this is build stage'
+            }
+          }  
+    stage ('DEPLOY') {
+      when {
+         expression { params.stage == 'DEPLOY' }
+      }
+            steps {
+              echo 'this is deploy stage'
+                }
+              } 
+       stage ('TEST') {
         when {
-        expression {params.STAGE == 'BUILD'}
+         expression { params.stage == 'TEST' }
         }
             steps {
-                 sh'''
-                 #!/bin/bash
-                 pwd
-                 ls
-                 echo "this is build stage"
-                 git branch: 'main', url: 'https://github.com/sandeep2523/c-project-demo.git'
-                 '''
+                  echo 'this is test'
                 }
-             }
-         stage('DEPLOY') {
-                when {
-                     expression {params.STAGE == 'DEPLOY'}
-                    }
-                    steps {
-                        sh'''
-                        #!/bin/bash
-                        pwd
-                          ls
-                        echo "this is deploy stage"
-                        '''      
-                    }
-                }
-        stage('TEST') {
-               when {
-                     expression {params.STAGE == 'TEST'}
-                    }
-            steps {
-                        sh'''
-                        #!/bin/bash
-                        pwd
-                        ls
-                        echo "this is test stage"
-                        '''
-                   }
-             }  
-
-      }
-}    
+              }
+      } 
+    }
