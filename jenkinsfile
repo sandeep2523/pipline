@@ -33,7 +33,7 @@
                 }
         stage('TEST') {
                when {
-                     expression {params.STAGE == 'DEPLOY'}
+                     expression {params.STAGE == 'TEST'}
                     }
             steps {
                         sh'''
