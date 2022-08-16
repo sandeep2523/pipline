@@ -3,7 +3,7 @@
     parameters {
         choice(choices: ['BUILD ', 'DEPLOY', 'TEST'], description: 'Please click on particular stage to run', name: 'STAGE')
     }
-    stages {
+      stages {
         stage('BUILD') {
             steps {
              script {
@@ -24,11 +24,11 @@
              }
             }
         }
-        stage('DEPLOY') {
+         stage('DEPLOY') {
             steps{
                 script{
-                    if(params.STAGE == 'DEPLOY')
-                    {
+                        if(params.STAGE == 'DEPLOY')
+                       {
                         sh'''
                         #!/bin/bash
                         pwd
@@ -44,7 +44,6 @@
                     }
                 }
             }
-        }
         stage('TEST') {
             steps {
                 script {
@@ -64,5 +63,6 @@
                 }
             }
         }  
+
       }
-    }
+}    
