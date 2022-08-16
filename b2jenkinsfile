@@ -1,6 +1,7 @@
 pipeline {
     agent any
     stages {
+        stage {
         when {
             branch 'master'
             stage('ALL') {
@@ -19,6 +20,8 @@ pipeline {
                 }
                 
             }
-        }
+       
+       }
+       }
     }
 }
