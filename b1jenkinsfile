@@ -1,12 +1,12 @@
 pipeline {
     agent any
     parameters {
-    choice(choices: ['master', 'main'], description: 'Please select the required branch', name: 'branch')
+    choice(choices: ['master', 'main'], description: 'Please select the required branch', name: 'BRANCH')
     }
     stages {
         stage ('BUILD') {
             when {
-                branch 'master'
+                expression {params.BRANCH == 'master'}
             }
             steps {
                 echo "this is build stage" 
@@ -17,7 +17,7 @@ pipeline {
         }
         stage ('DEPLOY') {
             when {
-                branch 'master'
+                expression {params.BRANCH == 'master'}
             }
             steps {
                 sh'''
