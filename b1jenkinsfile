@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('BUILD') {
             when {
-                BRANCH 'master'
+                branch 'master'
             }
             steps {
                 echo "this is build stage"   
