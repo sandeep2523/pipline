@@ -1,0 +1,33 @@
+pipeline{
+	agent any
+	stages {
+		stage('stageA') {
+		 when {
+					expression { stage == 'A' }
+				}
+			   steps {
+						echo "stage, stageA!"
+					}
+				}
+				
+				stage('stageB') {
+		 when {
+					expression { stage == 'B' }
+				}
+			   steps {
+						echo "stage, stageB!"
+					}
+				}
+				stage('stageC') {
+		 when {
+					expression { stage == 'C' }
+				}
+			   steps {
+						echo "stage, stageC!"
+					}
+				}
+				
+				
+		
+		}
+	}
